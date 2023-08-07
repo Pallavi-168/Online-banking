@@ -1,0 +1,34 @@
+<header class="menu-bar">
+  <div class="brand">
+    <span>LaCasa De Papel</span>
+    <img src="assets/symbol.png" alt="Logo" />
+  </div>
+  <button class="logout-button" routerLink="/adminlogin">Logout</button>
+  <!-- Add the notification icon with the message count -->
+  <div class="notification-icon" (click)="showMessages()">
+    <span class="notification-count" *ngIf="unreadMessagesCount > 0">{{ unreadMessagesCount }}</span>
+    <i class="fa fa-envelope"></i>
+  </div>
+</header>
+
+<div class="main-content">
+  <div class="left-panel">
+    <!-- Display list of all users -->
+    <ul>
+      <li *ngFor="let user of users">
+        {{ user.firstName }} {{ user.lastName }} ({{ user.username }})
+        <button (click)="deleteUser()">Delete</button>
+      </li>
+    </ul>
+  </div>
+  <div class="right-panel">
+    <button class="request-message-button" (click)="showMessageOverlay()">Request Message</button>
+    <div class="emergency-toggle">
+      <span>Emergency only</span>
+      <label class="switch">
+        <input type="checkbox" [(ngModel)]="emergencyMode" (change)="onToggleChange()" />
+        <span class="slider round"></span>
+      </label>
+    </div>
+  </div>
+</div>
